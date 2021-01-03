@@ -10,13 +10,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var (
-	baseURL = os.Getenv("BASE_URL")
-)
-
 func main() {
 	godotenv.Load()
-
 	router := gin.New()
 
 	router.MaxMultipartMemory = 50 << 20 // 8 MiB
@@ -69,5 +64,6 @@ func downloadSentFile(ctx *gin.Context) {
 		return
 	}
 
+	baseURL := os.Getenv("BASE_URL")
 	ctx.JSON(http.StatusOK, gin.H{"path": baseURL + "static/" + path})
 }
