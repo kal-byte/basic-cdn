@@ -10,6 +10,18 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type _utils struct{}
+
+func (u *_utils) getShortenedName(name string, length int) string {
+	if len(name) > 14 {
+		return name[len(name)-14:]
+	}
+
+	return name
+}
+
+var utils = &_utils{}
+
 func main() {
 	err := godotenv.Load()
 
@@ -60,11 +72,7 @@ func downloadSentFile(ctx *gin.Context) {
 	filename := filepath.Base(file.Filename)
 	path := ""
 
-	if len(filename) > 14 {
-		path = filename[len(filename)-14:]
-	} else {
-		path = filename
-	}
+	path = utils.getShortenedName(filename, 14)
 
 	if err := ctx.SaveUploadedFile(file, "static/"+path); err != nil {
 		ctx.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
