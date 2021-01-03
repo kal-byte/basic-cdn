@@ -1,4 +1,4 @@
-# Hey so you need a .env file, with "TOKEN" as a var, set it to whatever I guess.
+# Hey so you need a .env file, with "TOKEN" and "BASE_URL" as a var, set it to whatever I guess.
 
 ## Upload requests go:
 http://ip:7070/upload?token=TOKEN_HERE
