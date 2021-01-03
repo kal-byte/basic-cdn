@@ -20,7 +20,7 @@ func main() {
 
 	router := gin.New()
 
-	router.MaxMultipartMemory = 50 << 20 // 8 MiB
+	router.MaxMultipartMemory = 50 << 20 // 50 MiB
 	router.Static("/static", "./static")
 
 	router.Use(gin.Logger())
