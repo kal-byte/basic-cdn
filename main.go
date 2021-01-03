@@ -11,7 +11,13 @@ import (
 )
 
 func main() {
-	godotenv.Load()
+	err := godotenv.Load()
+
+	if err != nil {
+		fmt.Printf("There was an error initializing the environment variables. Error: %s", err)
+		return
+	}
+
 	router := gin.New()
 
 	router.MaxMultipartMemory = 50 << 20 // 8 MiB
