@@ -38,7 +38,8 @@ func main() {
 }
 
 func indexEndPoint(ctx *gin.Context) {
-	ctx.Redirect(http.StatusPermanentRedirect, "https://www.kal-byte.co.uk/")
+	redirectURL := os.Getenv("REDIRECT_URL")
+	ctx.Redirect(http.StatusPermanentRedirect, redirectURL)
 }
 
 func downloadSentFile(ctx *gin.Context) {
